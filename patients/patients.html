@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b5ed7"
+    >
+
+    <title>Patients — PharmaOS Africa</title>
+
+    <link
+        rel="stylesheet"
+        href="patients.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENU MOBILE
+    ====================================================== -->
+
+    <div
+        id="overlay"
+        class="overlay"
+    ></div>
+
+
+    <aside
+        id="sidebar"
+        class="sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <strong>
+                PharmaOS Africa
+            </strong>
+
+            <button
+                type="button"
+                id="btnFermerMenu"
+                class="btn-close-menu"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="../dashboard/dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="../medicaments/medicaments.html">
+                Médicaments
+            </a>
+
+            <a href="../stock/stock.html">
+                Stock
+            </a>
+
+            <a href="../achats/achats.html">
+                Achats / Réception
+            </a>
+
+            <a href="../ventes/ventes.html">
+                Ventes
+            </a>
+
+            <a
+                href="patients.html"
+                class="active"
+            >
+                Patients
+            </a>
+
+            <a href="../historique/historique.html">
+                Historique
+            </a>
+
+            <a href="../utilisateurs/utilisateurs.html">
+                Utilisateurs
+            </a>
+
+            <a href="../parametres/parametres.html">
+                Paramètres
+            </a>
+
+            <button
+                type="button"
+                id="btnDeconnexion"
+                class="menu-logout"
+            >
+                Déconnexion
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             EN-TÊTE
+        ================================================== -->
+
+        <header class="topbar">
+
+            <button
+                type="button"
+                id="btnMenu"
+                class="btn-menu"
+                aria-label="Ouvrir le menu"
+            >
+                ☰
+            </button>
+
+
+            <div class="page-title">
+
+                <h1>
+                    Patients
+                </h1>
+
+                <p>
+                    Gestion des patients
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="btnNouveau"
+                class="btn-primary"
+            >
+                + Nouveau
+            </button>
+
+        </header>
+
+
+        <!-- =================================================
+             RECHERCHE
+        ================================================== -->
+
+        <section class="search-section">
+
+            <label
+                for="recherchePatient"
+                class="sr-only"
+            >
+                Rechercher un patient
+            </label>
+
+
+            <input
+                type="search"
+                id="recherchePatient"
+                placeholder="Rechercher un patient..."
+                autocomplete="off"
+            >
+
+
+            <span
+                id="compteur"
+                class="counter"
+            >
+                0 patient
+            </span>
+
+        </section>
+
+
+        <!-- =================================================
+             FORMULAIRE PATIENT
+        ================================================== -->
+
+        <section
+            id="formulairePatient"
+            class="form-card"
+        >
+
+            <div class="form-header">
+
+                <div>
+
+                    <h2>
+                        Nouveau patient
+                    </h2>
+
+                    <p>
+                        Informations du patient
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="btnFermerForm"
+                    class="btn-close"
+                    aria-label="Fermer"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="formPatient"
+                autocomplete="off"
+            >
+
+
+                <!-- =========================================
+                     IDENTITÉ
+                ========================================== -->
+
+                <div class="form-grid">
+
+
+                    <div class="field">
+
+                        <label for="nom">
+                            Nom *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nom"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="prenom">
+                            Prénom *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="prenom"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="sexe">
+                            Sexe
+                        </label>
+
+                        <select id="sexe">
+
+                            <option value="">
+                                Sélectionner
+                            </option>
+
+                            <option value="Masculin">
+                                Masculin
+                            </option>
+
+                            <option value="Féminin">
+                                Féminin
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="dateNaissance">
+                            Date de naissance
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateNaissance"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="telephone">
+                            Téléphone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telephone"
+                            inputmode="tel"
+                            placeholder="+257..."
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="adresse">
+                            Adresse
+                        </label>
+
+                        <input
+                            type="text"
+                            id="adresse"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     INFORMATIONS PHARMACEUTIQUES
+                ========================================== -->
+
+                <div class="field">
+
+                    <label for="allergies">
+                        Allergies
+                    </label>
+
+                    <textarea
+                        id="allergies"
+                        rows="2"
+                        placeholder="Ex. pénicilline..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="antecedents">
+                        Antécédents / Informations importantes
+                    </label>
+
+                    <textarea
+                        id="antecedents"
+                        rows="3"
+                        placeholder="Informations utiles pour le suivi..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- =========================================
+                     ACTIONS
+                ========================================== -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="btnAnnuler"
+                        class="btn-secondary"
+                    >
+                        Annuler
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Enregistrer
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- =================================================
+             LISTE DES PATIENTS
+        ================================================== -->
+
+        <section class="table-card">
+
+
+            <div class="table-header">
+
+                <div>
+
+                    <h2>
+                        Liste des patients
+                    </h2>
+
+                    <p>
+                        Patients enregistrés dans PharmaOS Africa
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Code
+                            </th>
+
+                            <th>
+                                Patient
+                            </th>
+
+                            <th>
+                                Sexe
+                            </th>
+
+                            <th>
+                                Téléphone
+                            </th>
+
+                            <th>
+                                Date de naissance
+                            </th>
+
+                            <th>
+                                Dernière visite
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="listePatients">
+                        <!-- Patients générés par patients.js -->
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- =============================================
+                 ÉTAT VIDE
+            ============================================== -->
+
+            <div
+                id="etatVide"
+                class="empty-state"
+            >
+
+                <strong>
+                    Aucun patient
+                </strong>
+
+                <span>
+                    Ajoutez votre premier patient.
+                </span>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+    >
+
+        <span id="toastMessage"></span>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="../database/database.js"></script>
+
+    <script src="patients.js"></script>
+
+
+</body>
+
+</html>

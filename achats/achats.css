@@ -1,0 +1,374 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f7fb;
+    color: #1f2937;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #0b5ed7;
+    color: white;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.topbar span {
+    display: block;
+    margin-top: 3px;
+    font-size: 12px;
+    opacity: .85;
+}
+
+.menu-btn {
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 25px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 270px;
+    height: 100vh;
+    background: white;
+    z-index: 1000;
+    box-shadow: 4px 0 15px rgba(0,0,0,.15);
+    transition: left .25s ease;
+    overflow-y: auto;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    height: 64px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0b5ed7;
+    color: white;
+}
+
+.sidebar-header strong {
+    font-size: 16px;
+}
+
+.sidebar-header button {
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.sidebar nav {
+    padding: 10px;
+}
+
+.sidebar nav a,
+.sidebar nav .deconnexion {
+    display: block;
+    width: 100%;
+    padding: 12px 13px;
+    margin-bottom: 4px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #263238;
+    text-align: left;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #eef5ff;
+    color: #0b5ed7;
+}
+
+.sidebar .deconnexion {
+    margin-top: 12px;
+    color: #c62828;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================
+   CONTENU
+========================= */
+
+.conteneur {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 14px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 16px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.07);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.section-header p {
+    margin: 4px 0 0;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+#compteurAchats {
+    min-width: 30px;
+    padding: 5px 9px;
+    border-radius: 15px;
+    background: #eef5ff;
+    color: #0b5ed7;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+/* =========================
+   FORMULAIRE
+========================= */
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d6dde6;
+    border-radius: 7px;
+    outline: none;
+    background: white;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #0b5ed7;
+}
+
+.grille-prix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+
+/* =========================
+   SUGGESTIONS
+========================= */
+
+#suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+#suggestions button {
+    width: 100%;
+    border: 1px solid #dce3eb;
+    border-radius: 7px;
+    padding: 9px 10px;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+}
+
+#suggestions button:hover {
+    background: #f0f6ff;
+}
+
+.suggestion-nom {
+    display: block;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.suggestion-details {
+    display: block;
+    margin-top: 3px;
+    color: #6b7280;
+    font-size: 11px;
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+.resume-achat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 18px 0 12px;
+    padding: 12px;
+    background: #f5f8fc;
+    border-radius: 7px;
+}
+
+.resume-achat strong {
+    font-size: 16px;
+}
+
+
+/* =========================
+   BOUTON
+========================= */
+
+.btn-principal {
+    width: 100%;
+    border: 0;
+    border-radius: 7px;
+    padding: 12px;
+    background: #0b5ed7;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* =========================
+   TABLEAU HISTORIQUE
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+thead {
+    background: #f3f6fa;
+}
+
+th,
+td {
+    padding: 11px 9px;
+    border-bottom: 1px solid #e6ebf0;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background: #fafcff;
+}
+
+.etat-vide {
+    padding: 30px 10px;
+    text-align: center;
+    color: #7b8794;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+#toast {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translate(-50%, 20px);
+    padding: 10px 15px;
+    border-radius: 7px;
+    background: #1f2937;
+    color: white;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s;
+    z-index: 2000;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+
+@media (min-width: 700px) {
+
+    .conteneur {
+        padding: 24px;
+    }
+
+    #formAchat {
+        max-width: 650px;
+    }
+
+}

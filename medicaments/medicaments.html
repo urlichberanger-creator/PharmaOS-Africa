@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>PharmaOS Africa — Médicaments</title>
+
+    <link
+        rel="stylesheet"
+        href="medicaments.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <button
+            type="button"
+            id="btnMenu"
+            class="menu-button"
+            aria-label="Menu">
+            ☰
+        </button>
+
+        <div class="brand">
+            <strong>PharmaOS Africa</strong>
+            <span>ERP Pharmacie Professionnel</span>
+        </div>
+
+        <button
+            type="button"
+            id="btnNotifications"
+            class="notification-button"
+            aria-label="Notifications">
+            🔔
+        </button>
+
+    </header>
+
+
+    <div
+        id="overlay"
+        class="overlay">
+    </div>
+
+
+    <aside
+        id="sidebar"
+        class="sidebar">
+
+        <div class="sidebar-title">
+            PharmaOS Africa
+        </div>
+
+        <nav>
+
+            <a href="../dashboard/dashboard.html">
+                Dashboard
+            </a>
+
+            <a
+                href="medicaments.html"
+                class="active">
+                Médicaments
+            </a>
+
+            <a href="../stock/stock.html">
+                Stock
+            </a>
+
+            <a href="../achats/achats.html">
+                Achats / Réception
+            </a>
+
+            <a href="../ventes/ventes.html">
+                Ventes
+            </a>
+
+            <a href="../patients/patients.html">
+                Patients
+            </a>
+
+            <a href="../historique/historique.html">
+                Historique Stock
+            </a>
+
+            <a href="../utilisateurs/utilisateurs.html">
+                Utilisateurs
+            </a>
+
+            <a href="../parametres/parametres.html">
+                Paramètres
+            </a>
+
+            <button
+                type="button"
+                id="btnDeconnexion"
+                class="logout-button">
+                Déconnexion
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <section class="page-header">
+
+            <div>
+                <h1>Médicaments</h1>
+
+                <p>
+                    Référentiel pharmaceutique
+                </p>
+            </div>
+
+            <button
+                type="button"
+                id="btnNouveau"
+                class="primary-button">
+                + Nouveau médicament
+            </button>
+
+        </section>
+
+
+        <section
+            id="formSection"
+            class="form-section hidden">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>
+                        Fiche médicament
+                    </h2>
+
+                    <p>
+                        Saisie libre avec suggestions intelligentes
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="formMedicament">
+
+                <div class="form-grid">
+
+
+                    <div class="field">
+
+                        <label for="codeBarre">
+                            Code-barres
+                        </label>
+
+                        <input
+                            type="text"
+                            id="codeBarre"
+                            autocomplete="off"
+                            placeholder="Code-barres si disponible">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="dci">
+                            DCI
+                        </label>
+
+                        <div class="smart-field">
+
+                            <input
+                                type="text"
+                                id="dci"
+                                autocomplete="off"
+                                placeholder="Ex. Paracétamol">
+
+                            <div
+                                id="suggestionsDci"
+                                class="suggestions">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="nomCommercial">
+                            Nom commercial
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nomCommercial"
+                            autocomplete="off"
+                            placeholder="Ex. Doliprane">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="forme">
+                            Forme pharmaceutique
+                        </label>
+
+                        <div class="smart-field">
+
+                            <input
+                                type="text"
+                                id="forme"
+                                autocomplete="off"
+                                placeholder="Ex. comprimé, gélule, solution...">
+
+                            <div
+                                id="suggestionsForme"
+                                class="suggestions">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="dosage">
+                            Dosage / concentration
+                        </label>
+
+                        <div class="smart-field">
+
+                            <input
+                                type="text"
+                                id="dosage"
+                                autocomplete="off"
+                                placeholder="Ex. 500 mg, 250 mg/5 mL...">
+
+                            <div
+                                id="suggestionsDosage"
+                                class="suggestions">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="voie">
+                            Voie d'administration
+                        </label>
+
+                        <div class="smart-field">
+
+                            <input
+                                type="text"
+                                id="voie"
+                                autocomplete="off"
+                                placeholder="Ex. voie orale">
+
+                            <div
+                                id="suggestionsVoie"
+                                class="suggestions">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field field-full">
+
+                        <label for="conditionnement">
+                            Conditionnement
+                        </label>
+
+                        <div class="smart-field">
+
+                            <input
+                                type="text"
+                                id="conditionnement"
+                                autocomplete="off"
+                                placeholder="Ex. B/10 comprimés sous blister">
+
+                            <div
+                                id="suggestionsConditionnement"
+                                class="suggestions">
+                            </div>
+
+                        </div>
+
+                        <small>
+                            Vous pouvez écrire librement un conditionnement
+                            qui n'existe pas encore dans les suggestions.
+                        </small>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="laboratoire">
+                            Laboratoire
+                        </label>
+
+                        <input
+                            type="text"
+                            id="laboratoire"
+                            autocomplete="off"
+                            placeholder="Nom du laboratoire">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="classeTherapeutique">
+                            Classe thérapeutique
+                        </label>
+
+                        <div class="smart-field">
+
+                            <input
+                                type="text"
+                                id="classeTherapeutique"
+                                autocomplete="off"
+                                placeholder="Ex. Antalgique">
+
+                            <div
+                                id="suggestionsClasse"
+                                class="suggestions">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field field-full">
+
+                        <label for="informations">
+                            Informations complémentaires
+                        </label>
+
+                        <textarea
+                            id="informations"
+                            rows="4"
+                            placeholder="Informations utiles..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="btnAnnuler"
+                        class="secondary-button">
+                        Annuler
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+                        Enregistrer
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <section class="list-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>
+                        Référentiel
+                    </h2>
+
+                    <p id="compteurMedicaments">
+                        0 médicament
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <input
+                    type="search"
+                    id="recherche"
+                    autocomplete="off"
+                    placeholder="Rechercher DCI, nom commercial, article, laboratoire...">
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Article</th>
+                            <th>Médicament</th>
+                            <th>Forme</th>
+                            <th>Dosage</th>
+                            <th>Conditionnement</th>
+                            <th>Laboratoire</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listeMedicaments">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="etatVide"
+                class="empty-state">
+
+                <strong>
+                    Aucun médicament
+                </strong>
+
+                <span>
+                    Ajoutez votre premier médicament.
+                </span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="toast"
+        class="toast">
+
+        <span id="toastMessage"></span>
+
+    </div>
+
+
+    <script src="../database/database.js"></script>
+    <script src="medicaments.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PharmaOS Africa</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #0757b8;
+        }
+
+        .splash {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                145deg,
+                #063b7d,
+                #0757b8
+            );
+            color: white;
+        }
+
+        .splash-content {
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .cross {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            position: relative;
+        }
+
+        .cross::before,
+        .cross::after {
+            content: "";
+            position: absolute;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .cross::before {
+            width: 22px;
+            height: 70px;
+            left: 24px;
+            top: 0;
+        }
+
+        .cross::after {
+            width: 70px;
+            height: 22px;
+            left: 0;
+            top: 24px;
+        }
+
+        .app-name {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            opacity: 0.9;
+        }
+
+        .loader-container {
+            width: 100%;
+            height: 5px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loader-bar {
+            width: 0;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .loader-text {
+            margin-top: 14px;
+            min-height: 18px;
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        .version {
+            margin-top: 30px;
+            font-size: 11px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="splash">
+
+        <div class="splash-content">
+
+            <div class="cross"></div>
+
+            <h1 class="app-name">
+                PharmaOS Africa
+            </h1>
+
+            <div class="subtitle">
+                ERP PHARMACIE PROFESSIONNEL
+            </div>
+
+            <div class="loader-container">
+                <div
+                    id="loaderBar"
+                    class="loader-bar">
+                </div>
+            </div>
+
+            <div
+                id="loaderText"
+                class="loader-text">
+                Initialisation…
+            </div>
+
+            <div class="version">
+                Version 1.0
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        "use strict";
+
+        var TEMPS_DEMARRAGE = 3000;
+
+
+        function initialiserApplication() {
+
+            var collections = [
+                "medicaments",
+                "stock",
+                "achats",
+                "ventes",
+                "patients",
+                "journal"
+            ];
+
+
+            for (
+                var i = 0;
+                i < collections.length;
+                i++
+            ) {
+
+                if (
+                    localStorage.getItem(
+                        collections[i]
+                    ) === null
+                ) {
+
+                    localStorage.setItem(
+                        collections[i],
+                        "[]"
+                    );
+                }
+            }
+        }
+
+
+        function demarrerChargement() {
+
+            var barre =
+                document.getElementById(
+                    "loaderBar"
+                );
+
+            var texte =
+                document.getElementById(
+                    "loaderText"
+                );
+
+
+            var progression = 0;
+
+
+            var intervalle =
+                window.setInterval(
+                    function () {
+
+                        progression += 2;
+
+
+                        if (
+                            progression >= 100
+                        ) {
+
+                            progression = 100;
+
+                            window.clearInterval(
+                                intervalle
+                            );
+                        }
+
+
+                        if (barre) {
+
+                            barre.style.width =
+                                progression + "%";
+                        }
+
+
+                        if (
+                            texte &&
+                            progression >= 30 &&
+                            progression < 70
+                        ) {
+
+                            texte.textContent =
+                                "Chargement des données…";
+                        }
+
+
+                        if (
+                            texte &&
+                            progression >= 70 &&
+                            progression < 100
+                        ) {
+
+                            texte.textContent =
+                                "Préparation de l'application…";
+                        }
+
+
+                        if (
+                            texte &&
+                            progression === 100
+                        ) {
+
+                            texte.textContent =
+                                "Démarrage…";
+                        }
+
+                    },
+                    60
+                );
+        }
+
+
+        function ouvrirApplication() {
+
+            window.location.href =
+                "dashboard/dashboard.html";
+        }
+
+
+        function demarrerApplication() {
+
+            try {
+
+                initialiserApplication();
+
+                demarrerChargement();
+
+
+                window.setTimeout(
+                    function () {
+
+                        ouvrirApplication();
+
+                    },
+                    TEMPS_DEMARRAGE
+                );
+
+
+            } catch (erreur) {
+
+                console.error(
+                    "Erreur de démarrage :",
+                    erreur
+                );
+            }
+        }
+
+
+        window.addEventListener(
+            "load",
+            demarrerApplication
+        );
+
+    </script>
+
+</body>
+</html>

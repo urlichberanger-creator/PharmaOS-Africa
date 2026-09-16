@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Stock — PharmaOS Africa</title>
+
+    <link rel="stylesheet" href="stock.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         OVERLAY
+    ====================================================== -->
+
+    <div id="overlay"></div>
+
+
+    <!-- =====================================================
+         MENU LATÉRAL
+    ====================================================== -->
+
+    <aside id="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="sidebar-title">
+                PharmaOS Africa
+            </div>
+
+            <button
+                id="btnFermerMenu"
+                type="button"
+                aria-label="Fermer le menu">
+                ×
+            </button>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="../dashboard/dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="../medicaments/medicaments.html">
+                Médicaments
+            </a>
+
+            <a href="stock.html"
+               class="active">
+                Stock
+            </a>
+
+            <a href="../achats/achats.html">
+                Achats / Réception
+            </a>
+
+            <a href="../ventes/ventes.html">
+                Ventes
+            </a>
+
+            <a href="../patients/patients.html">
+                Patients
+            </a>
+
+            <a href="../historique/historique.html">
+                Historique
+            </a>
+
+            <a href="../utilisateurs/utilisateurs.html">
+                Utilisateurs
+            </a>
+
+            <a href="../parametres/parametres.html">
+                Paramètres
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <button
+                id="btnDeconnexion"
+                type="button">
+                Déconnexion
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         APPLICATION
+    ====================================================== -->
+
+    <div id="app">
+
+
+        <!-- =================================================
+             BARRE SUPÉRIEURE
+        ================================================== -->
+
+        <header class="topbar">
+
+            <button
+                id="btnMenu"
+                class="menu-button"
+                type="button"
+                aria-label="Ouvrir le menu">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <div class="topbar-title">
+
+                <h1>Stock</h1>
+
+                <p>
+                    Gestion et contrôle du stock
+                </p>
+
+            </div>
+
+
+            <button
+                id="btnActualiser"
+                class="btn-refresh"
+                type="button">
+
+                Actualiser
+
+            </button>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENU
+        ================================================== -->
+
+        <main class="contenu">
+
+
+            <!-- =============================================
+                 TITRE
+            ============================================== -->
+
+            <section class="page-heading">
+
+                <div>
+
+                    <h2>
+                        État général du stock
+                    </h2>
+
+                    <p>
+                        Entrées, sorties, lots et niveaux de stock
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="btnNouveau"
+                    class="btn-primary"
+                    type="button">
+
+                    + Entrée stock
+
+                </button>
+
+            </section>
+
+
+            <!-- =============================================
+                 STATISTIQUES
+            ============================================== -->
+
+            <section class="stats-grid">
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Articles
+                    </span>
+
+                    <strong id="statArticles">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Quantité disponible
+                    </span>
+
+                    <strong id="statQuantite">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Stock faible
+                    </span>
+
+                    <strong id="statFaible">
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Expiration proche
+                    </span>
+
+                    <strong id="statExpiration">
+                        0
+                    </strong>
+
+                </article>
+
+            </section>
+
+
+            <!-- =============================================
+                 CONTRÔLES STOCK
+            ============================================== -->
+
+            <section class="stock-controls">
+
+                <div class="control-group">
+
+                    <label for="recherche">
+                        Rechercher
+                    </label>
+
+                    <input
+                        type="search"
+                        id="recherche"
+                        placeholder="Médicament, article ou lot...">
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <label for="filtreEtat">
+                        État
+                    </label>
+
+                    <select id="filtreEtat">
+
+                        <option value="tous">
+                            Tous
+                        </option>
+
+                        <option value="ok">
+                            Stock normal
+                        </option>
+
+                        <option value="low">
+                            Stock faible
+                        </option>
+
+                        <option value="soon">
+                            Expiration proche
+                        </option>
+
+                        <option value="expired">
+                            Expiré
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 TABLE STOCK
+            ============================================== -->
+
+            <section class="stock-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>
+                            Stock disponible
+                        </h3>
+
+                        <p id="compteur">
+                            0 ligne
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Article
+                                </th>
+
+                                <th>
+                                    Médicament
+                                </th>
+
+                                <th>
+                                    Lot
+                                </th>
+
+                                <th>
+                                    Expiration
+                                </th>
+
+                                <th>
+                                    Quantité
+                                </th>
+
+                                <th>
+                                    PAU
+                                </th>
+
+                                <th>
+                                    PVU
+                                </th>
+
+                                <th>
+                                    État
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="listeStock">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    id="etatVide"
+                    class="empty-state">
+
+                    Aucun stock disponible.
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 FORMULAIRE ENTRÉE STOCK
+            ============================================== -->
+
+            <section
+                id="formulaireStock"
+                class="form-card hidden">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>
+                            Nouvelle entrée stock
+                        </h3>
+
+                        <p>
+                            Enregistrer une entrée de stock
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        id="btnFermerForm"
+                        class="btn-close"
+                        type="button">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+                <form id="formStock">
+
+
+                    <!-- MÉDICAMENT -->
+
+                    <div class="form-group">
+
+                        <label for="rechercheMedicament">
+                            Médicament
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rechercheMedicament"
+                            autocomplete="off"
+                            placeholder="Rechercher un médicament...">
+
+                        <input
+                            type="hidden"
+                            id="medicamentId">
+
+                        <div
+                            id="suggestionsMedicaments"
+                            class="suggestions">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOT -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="lot">
+                                Numéro de lot
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lot"
+                                placeholder="Ex. LOT001234">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="dateExpiration">
+                                Expiration
+                            </label>
+
+                            <input
+                                type="month"
+                                id="dateExpiration">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUANTITÉ -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="quantite">
+                                Quantité
+                            </label>
+
+                            <input
+                                type="number"
+                                id="quantite"
+                                min="1"
+                                step="1"
+                                placeholder="0">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="stockMinimum">
+                                Stock minimum
+                            </label>
+
+                            <input
+                                type="number"
+                                id="stockMinimum"
+                                min="0"
+                                step="1"
+                                value="10">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRIX -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="prixAchat">
+                                PAU
+                            </label>
+
+                            <input
+                                type="number"
+                                id="prixAchat"
+                                min="0"
+                                step="1"
+                                placeholder="0">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="prixVente">
+                                PVU
+                            </label>
+
+                            <input
+                                type="number"
+                                id="prixVente"
+                                min="0"
+                                step="1"
+                                placeholder="0">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOURNISSEUR -->
+
+                    <div class="form-group">
+
+                        <label for="fournisseur">
+                            Fournisseur
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fournisseur"
+                            placeholder="Nom du fournisseur">
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="form-actions">
+
+                        <button
+                            id="btnAnnuler"
+                            class="btn-secondary"
+                            type="button">
+
+                            Annuler
+
+                        </button>
+
+
+                        <button
+                            class="btn-primary"
+                            type="submit">
+
+                            Enregistrer l'entrée
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- =============================================
+                 ZONE PRÉPARÉE POUR HISTORIQUE
+            ============================================== -->
+
+            <section class="stock-card history-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>
+                            Mouvements de stock
+                        </h3>
+
+                        <p>
+                            Entrées et sorties enregistrées
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="movement-summary">
+
+                    <div>
+
+                        <span>
+                            Entrées
+                        </span>
+
+                        <strong id="totalEntrees">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Sorties
+                        </span>
+
+                        <strong id="totalSorties">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Lots
+                        </span>
+
+                        <strong id="totalLots">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+        <!-- =================================================
+             TOAST
+        ================================================== -->
+
+        <div
+            id="toast"
+            class="toast">
+
+            <span id="toastMessage"></span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="../database/database.js"></script>
+    <script src="stock.js"></script>
+
+</body>
+
+</html>

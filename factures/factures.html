@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Factures — PharmaOS Africa</title>
+
+    <link
+        rel="stylesheet"
+        href="factures.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         OVERLAY
+    ====================================================== -->
+
+    <div
+        id="overlay"
+        class="overlay"
+    ></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        id="sidebar"
+        class="sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <div class="brand">
+                <strong>PharmaOS Africa</strong>
+                <span>ERP Pharmacie Professionnel</span>
+            </div>
+
+            <button
+                id="btnFermerMenu"
+                class="btn-icon sidebar-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="../dashboard/dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="../medicaments/medicaments.html">
+                Médicaments
+            </a>
+
+            <a href="../stock/stock.html">
+                Stock
+            </a>
+
+            <a href="../achats/achats.html">
+                Achats / Réception
+            </a>
+
+            <a href="../ventes/ventes.html">
+                Ventes
+            </a>
+
+            <a href="../factures/factures.html"
+               class="active">
+                Factures
+            </a>
+
+            <a href="../patients/patients.html">
+                Patients
+            </a>
+
+            <a href="../historique/historique.html">
+                Historique Stock
+            </a>
+
+            <a href="../utilisateurs/utilisateurs.html">
+                Utilisateurs
+            </a>
+
+            <a href="../parametres/parametres.html">
+                Paramètres
+            </a>
+
+        </nav>
+
+
+        <button
+            id="btnDeconnexion"
+            class="btn-deconnexion"
+            type="button"
+        >
+            Déconnexion
+        </button>
+
+    </aside>
+
+
+    <!-- =====================================================
+         APPLICATION
+    ====================================================== -->
+
+    <main class="app">
+
+        <header class="topbar">
+
+            <button
+                id="btnMenu"
+                class="btn-icon"
+                type="button"
+            >
+                ☰
+            </button>
+
+            <div>
+                <h1>Factures</h1>
+                <p>Gestion et consultation des factures</p>
+            </div>
+
+        </header>
+
+
+        <section class="page">
+
+
+            <!-- =================================================
+                 FILTRES
+            ================================================== -->
+
+            <section class="filters">
+
+                <div class="field search-field">
+
+                    <label for="recherche">
+                        Rechercher
+                    </label>
+
+                    <input
+                        id="recherche"
+                        type="search"
+                        placeholder="N° facture, patient..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="filtrePaiement">
+                        Paiement
+                    </label>
+
+                    <select id="filtrePaiement">
+
+                        <option value="">
+                            Tous
+                        </option>
+
+                        <option value="espèces">
+                            Espèces
+                        </option>
+
+                        <option value="mobile money">
+                            Mobile Money
+                        </option>
+
+                        <option value="carte">
+                            Carte
+                        </option>
+
+                        <option value="virement">
+                            Virement
+                        </option>
+
+                        <option value="crédit">
+                            Crédit
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="filtreDate">
+                        Date
+                    </label>
+
+                    <input
+                        id="filtreDate"
+                        type="date"
+                    >
+
+                </div>
+
+
+                <button
+                    id="btnActualiser"
+                    class="btn-secondary"
+                    type="button"
+                >
+                    Actualiser
+                </button>
+
+            </section>
+
+
+            <!-- =================================================
+                 RESUME
+            ================================================== -->
+
+            <section class="summary">
+
+                <div class="summary-card">
+
+                    <span>
+                        Factures
+                    </span>
+
+                    <strong id="compteur">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        Montant total
+                    </span>
+
+                    <strong id="totalFactures">
+                        0 BIF
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LISTE
+            ================================================== -->
+
+            <section class="table-card">
+
+                <div class="section-title">
+
+                    <div>
+                        <h2>
+                            Historique des factures
+                        </h2>
+
+                        <p>
+                            Consultez et imprimez les factures enregistrées.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Facture
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Patient
+                                </th>
+
+                                <th>
+                                    Paiement
+                                </th>
+
+                                <th class="align-right">
+                                    Total
+                                </th>
+
+                                <th class="align-center">
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="listeFactures"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    id="etatVide"
+                    class="empty"
+                >
+                    Aucune facture enregistrée.
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FACTURE
+    ====================================================== -->
+
+    <div
+        id="facture"
+        class="invoice-overlay"
+    >
+
+        <div class="invoice-modal">
+
+
+            <div class="invoice-actions">
+
+                <button
+                    id="btnFermerFacture"
+                    class="btn-secondary"
+                    type="button"
+                >
+                    Fermer
+                </button>
+
+                <button
+                    id="btnImprimer"
+                    class="btn-primary"
+                    type="button"
+                >
+                    Imprimer
+                </button>
+
+            </div>
+
+
+            <article class="invoice">
+
+
+                <!-- =============================================
+                     EN-TÊTE
+                ============================================== -->
+
+                <header class="invoice-header">
+
+                    <div class="pharmacy-info">
+
+                        <div class="invoice-brand">
+                            PharmaOS Africa
+                        </div>
+
+                        <div class="invoice-subtitle">
+                            ERP Pharmacie Professionnel
+                        </div>
+
+                        <div
+                            id="pharmacieAdresse"
+                            class="pharmacy-details"
+                        ></div>
+
+                        <div
+                            id="pharmacieTelephone"
+                            class="pharmacy-details"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="invoice-title">
+
+                        <span>
+                            FACTURE
+                        </span>
+
+                        <strong id="numeroFacture">
+                            FACT-000000
+                        </strong>
+
+                        <small id="dateFacture">
+                            —
+                        </small>
+
+                    </div>
+
+                </header>
+
+
+                <!-- =============================================
+                     CLIENT
+                ============================================== -->
+
+                <section class="invoice-info">
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            PATIENT / CLIENT
+                        </span>
+
+                        <strong id="patientFacture">
+                            Client comptant
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box right">
+
+                        <span class="info-label">
+                            MODE DE PAIEMENT
+                        </span>
+
+                        <strong id="modeFacture">
+                            —
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     TABLE PRODUITS
+                ============================================== -->
+
+                <section class="invoice-lines">
+
+                    <div class="invoice-line invoice-head">
+
+                        <span>
+                            Désignation
+                        </span>
+
+                        <span class="center">
+                            Qté
+                        </span>
+
+                        <span class="right">
+                            Prix unitaire
+                        </span>
+
+                        <span class="right">
+                            Total
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="contenuFacture"
+                        class="invoice-body"
+                    ></div>
+
+                </section>
+
+
+                <!-- =============================================
+                     TOTALS
+                ============================================== -->
+
+                <section class="invoice-total">
+
+                    <div class="total-row">
+
+                        <span>
+                            Sous-total
+                        </span>
+
+                        <strong id="sousTotalFacture">
+                            0 BIF
+                        </strong>
+
+                    </div>
+
+
+                    <div class="total-row total-final">
+
+                        <span>
+                            TOTAL À PAYER
+                        </span>
+
+                        <strong id="totalFacture">
+                            0 BIF
+                        </strong>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     UTILISATEUR
+                ============================================== -->
+
+                <section class="invoice-footer-info">
+
+                    <div>
+
+                        <span>
+                            Pharmacien / utilisateur
+                        </span>
+
+                        <strong id="utilisateurFacture">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="invoice-thanks">
+
+                        Merci pour votre confiance.
+
+                    </div>
+
+                </section>
+
+
+                <footer class="invoice-footer">
+
+                    Document généré par
+                    <strong>PharmaOS Africa</strong>
+
+                </footer>
+
+
+            </article>
+
+
+            <div class="invoice-bottom-actions">
+
+                <button
+                    id="btnFermerFacture2"
+                    class="btn-secondary"
+                    type="button"
+                >
+                    Fermer
+                </button>
+
+                <button
+                    id="btnImprimer2"
+                    class="btn-primary"
+                    type="button"
+                >
+                    Imprimer la facture
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        <span id="toastMessage"></span>
+    </div>
+
+
+    <script src="../database/database.js"></script>
+    <script src="factures.js"></script>
+
+</body>
+
+</html>

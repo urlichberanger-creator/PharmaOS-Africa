@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Achats / Réception - PharmaOS Africa</title>
+
+    <link
+        rel="stylesheet"
+        href="achats.css"
+    >
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     MENU MOBILE
+========================== -->
+
+<div
+    id="overlay"
+    class="overlay"
+></div>
+
+
+<aside
+    id="sidebar"
+    class="sidebar"
+>
+
+    <div class="sidebar-header">
+
+        <strong>
+            PharmaOS Africa
+        </strong>
+
+        <button
+            type="button"
+            id="btnFermerMenu"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <nav>
+
+        <a href="../dashboard/dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="../medicaments/medicaments.html">
+            Médicaments
+        </a>
+
+        <a href="../stock/stock.html">
+            Stock
+        </a>
+
+        <a
+            href="achats.html"
+            class="active"
+        >
+            Achats / Réception
+        </a>
+
+        <a href="../ventes/ventes.html">
+            Ventes
+        </a>
+
+        <a href="../patients/patients.html">
+            Patients
+        </a>
+
+        <a href="../historique/historique.html">
+            Historique Stock
+        </a>
+
+        <a href="../utilisateurs/utilisateurs.html">
+            Utilisateurs
+        </a>
+
+        <a href="../parametres/parametres.html">
+            Paramètres
+        </a>
+
+        <button
+            type="button"
+            id="btnDeconnexion"
+            class="deconnexion"
+        >
+            Déconnexion
+        </button>
+
+    </nav>
+
+</aside>
+
+
+<!-- =========================
+     BARRE SUPÉRIEURE
+========================== -->
+
+<header class="topbar">
+
+    <button
+        type="button"
+        id="btnMenu"
+        class="menu-btn"
+        aria-label="Ouvrir le menu"
+    >
+        ☰
+    </button>
+
+
+    <div>
+
+        <h1>
+            Achats / Réception
+        </h1>
+
+        <span>
+            Entrée des médicaments en stock
+        </span>
+
+    </div>
+
+</header>
+
+
+<main class="conteneur">
+
+
+    <!-- =========================
+         NOUVELLE RÉCEPTION
+    ========================== -->
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Nouvelle réception
+                </h2>
+
+                <p>
+                    Enregistrer une entrée de stock
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form id="formAchat">
+
+
+            <label for="medicament">
+                Médicament
+            </label>
+
+
+            <input
+                type="text"
+                id="medicament"
+                placeholder="Rechercher : DCI ou nom commercial..."
+                autocomplete="off"
+                required
+            >
+
+
+            <div id="suggestions"></div>
+
+
+            <label for="quantite">
+                Quantité
+            </label>
+
+
+            <input
+                type="number"
+                id="quantite"
+                min="1"
+                placeholder="Ex : 100"
+                required
+            >
+
+
+            <div class="grille-prix">
+
+                <div>
+
+                    <label for="prixAchat">
+                        PAU
+                    </label>
+
+                    <input
+                        type="number"
+                        id="prixAchat"
+                        min="0"
+                        step="0.01"
+                        placeholder="Prix d'achat unitaire"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label for="prixVente">
+                        PVU
+                    </label>
+
+                    <input
+                        type="number"
+                        id="prixVente"
+                        min="0"
+                        step="0.01"
+                        placeholder="Prix de vente unitaire"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <label for="lot">
+                Numéro de lot
+            </label>
+
+
+            <input
+                type="text"
+                id="lot"
+                placeholder="Ex : LOT2026001"
+                autocomplete="off"
+                required
+            >
+
+
+            <label for="dateExpiration">
+                Date d'expiration
+            </label>
+
+
+            <input
+                type="month"
+                id="dateExpiration"
+            >
+
+
+            <label for="fournisseur">
+                Fournisseur
+            </label>
+
+
+            <input
+                type="text"
+                id="fournisseur"
+                placeholder="Nom du fournisseur"
+                autocomplete="off"
+            >
+
+
+            <div class="resume-achat">
+
+                <span>
+                    Total achat
+                </span>
+
+                <strong id="totalAchat">
+                    0 BIF
+                </strong>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-principal"
+            >
+                Enregistrer la réception
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- =========================
+         HISTORIQUE
+    ========================== -->
+
+    <section class="card historique-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Achats enregistrés
+                </h2>
+
+                <p>
+                    Historique des réceptions
+                </p>
+
+            </div>
+
+
+            <strong id="compteurAchats">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Médicament</th>
+                        <th>Lot</th>
+                        <th>Qté</th>
+                        <th>PAU</th>
+                        <th>PVU</th>
+                        <th>Fournisseur</th>
+                        <th>Total</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="listeAchats">
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="etat-vide"
+                        >
+                            Aucun achat enregistré.
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<div id="toast"></div>
+
+
+<script src="../database/database.js"></script>
+<script src="achats.js"></script>
+
+
+</body>
+
+</html>

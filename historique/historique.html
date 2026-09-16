@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Historique Stock - PharmaOS Africa</title>
+
+    <link rel="stylesheet" href="historique.css">
+</head>
+
+<body>
+
+    <!-- MENU MOBILE -->
+    <div id="overlay"></div>
+
+    <aside id="sidebar">
+
+        <div class="sidebar-header">
+            <strong>PharmaOS Africa</strong>
+
+            <button id="btnFermerMenu" type="button">
+                ×
+            </button>
+        </div>
+
+        <nav>
+
+            <a href="../dashboard/dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="../medicaments/medicaments.html">
+                Médicaments
+            </a>
+
+            <a href="../stock/stock.html">
+                Stock
+            </a>
+
+            <a href="../achats/achats.html">
+                Achats / Réception
+            </a>
+
+            <a href="../ventes/ventes.html">
+                Ventes
+            </a>
+
+            <a href="../patients/patients.html">
+                Patients
+            </a>
+
+            <a href="historique.html" class="active">
+                Historique Stock
+            </a>
+
+            <a href="../utilisateurs/utilisateurs.html">
+                Utilisateurs
+            </a>
+
+            <a href="../parametres/parametres.html">
+                Paramètres
+            </a>
+
+            <a href="#" id="btnDeconnexion">
+                Déconnexion
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- APPLICATION -->
+
+    <div class="app">
+
+        <header class="topbar">
+
+            <button id="btnMenu" type="button">
+                ☰
+            </button>
+
+            <div>
+                <strong>Historique Stock</strong>
+                <small>Traçabilité des mouvements</small>
+            </div>
+
+        </header>
+
+
+        <main>
+
+            <!-- TITRE -->
+
+            <section class="page-header">
+
+                <div>
+                    <h1>Historique Stock</h1>
+
+                    <p>
+                        Suivi des entrées et sorties de stock
+                    </p>
+                </div>
+
+                <button
+                    id="btnActualiser"
+                    class="btn-secondaire"
+                    type="button">
+                    Actualiser
+                </button>
+
+            </section>
+
+
+            <!-- STATISTIQUES -->
+
+            <section class="stats">
+
+                <div class="stat-card">
+                    <span>Entrées</span>
+                    <strong id="totalEntrees">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Sorties</span>
+                    <strong id="totalSorties">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Quantité entrée</span>
+                    <strong id="quantiteEntree">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span>Quantité sortie</span>
+                    <strong id="quantiteSortie">0</strong>
+                </div>
+
+            </section>
+
+
+            <!-- FILTRES -->
+
+            <section class="filtres">
+
+                <input
+                    type="search"
+                    id="recherche"
+                    placeholder="Rechercher médicament, lot, fournisseur...">
+
+                <select id="filtreType">
+
+                    <option value="">Tous les mouvements</option>
+
+                    <option value="ENTRÉE">
+                        Entrées
+                    </option>
+
+                    <option value="SORTIE">
+                        Sorties
+                    </option>
+
+                </select>
+
+                <button
+                    id="btnReset"
+                    type="button">
+                    Réinitialiser
+                </button>
+
+            </section>
+
+
+            <!-- TABLE -->
+
+            <section class="table-card">
+
+                <div class="table-head">
+
+                    <h2>Mouvements</h2>
+
+                    <span id="compteur">
+                        0 mouvement
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+
+                                <th>Type</th>
+
+                                <th>Médicament</th>
+
+                                <th>Lot</th>
+
+                                <th>Quantité</th>
+
+                                <th>Prix</th>
+
+                                <th>Origine</th>
+
+                                <th>Référence</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="listeHistorique">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div id="etatVide" class="vide">
+
+                    Aucun mouvement enregistré.
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div id="toast">
+
+        <span id="toastMessage"></span>
+
+    </div>
+
+
+    <script src="../database/database.js"></script>
+    <script src="historique.js"></script>
+
+</body>
+</html>
