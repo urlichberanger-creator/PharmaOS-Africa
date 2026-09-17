@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilisateurs - PharmaOS Africa</title>
+    <link rel="stylesheet" href="utilisateurs.css">
+</head>
+
+<body>
+
+<div id="overlay"></div>
+
+<aside id="sidebar">
+
+    <div class="sidebar-header">
+        <strong>PharmaOS Africa</strong>
+        <button id="btnFermerMenu" type="button">×</button>
+    </div>
+
+    <nav>
+        <a href="../dashboard/dashboard.html">Dashboard</a>
+        <a href="../medicaments/medicaments.html">Médicaments</a>
+        <a href="../stock/stock.html">Stock</a>
+        <a href="../achats/achats.html">Achats / Réception</a>
+        <a href="../ventes/ventes.html">Ventes</a>
+        <a href="../patients/patients.html">Patients</a>
+        <a href="../historique/historique.html">Historique Stock</a>
+        <a href="utilisateurs.html" class="active">Utilisateurs</a>
+        <a href="../parametres/parametres.html">Paramètres</a>
+        <a href="#" id="btnDeconnexion">Déconnexion</a>
+    </nav>
+
+</aside>
+
+
+<div class="app">
+
+    <header class="topbar">
+
+        <button id="btnMenu" type="button">☰</button>
+
+        <div>
+            <strong>Utilisateurs</strong>
+            <small>Gestion des accès</small>
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="page-header">
+
+            <div>
+                <h1>Utilisateurs</h1>
+                <p>Gestion des comptes et des rôles</p>
+            </div>
+
+            <button id="btnNouveau" class="btn-principal" type="button">
+                + Nouvel utilisateur
+            </button>
+
+        </section>
+
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>Total</span>
+                <strong id="totalUtilisateurs">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Actifs</span>
+                <strong id="totalActifs">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Inactifs</span>
+                <strong id="totalInactifs">0</strong>
+            </div>
+
+        </section>
+
+
+        <section id="formulaire" class="form-card hidden">
+
+            <div class="form-header">
+                <h2>Nouvel utilisateur</h2>
+                <button id="btnFermerForm" type="button">×</button>
+            </div>
+
+            <form id="formUtilisateur">
+
+                <div class="grid">
+
+                    <label>
+                        Nom
+                        <input id="nom" type="text" required>
+                    </label>
+
+                    <label>
+                        Prénom
+                        <input id="prenom" type="text" required>
+                    </label>
+
+                    <label>
+                        Identifiant
+                        <input id="identifiant" type="text" required>
+                    </label>
+
+                    <label>
+                        Rôle
+                        <select id="role" required>
+                            <option value="pharmacien">Pharmacien</option>
+                            <option value="assistant">Assistant</option>
+                            <option value="vendeur">Vendeur</option>
+                            <option value="gestionnaire">Gestionnaire</option>
+                            <option value="administrateur">Administrateur</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Mot de passe
+                        <input id="motDePasse" type="password" required>
+                    </label>
+
+                    <label>
+                        Statut
+                        <select id="statut">
+                            <option value="actif">Actif</option>
+                            <option value="inactif">Inactif</option>
+                        </select>
+                    </label>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button id="btnAnnuler" type="button" class="btn-secondaire">
+                        Annuler
+                    </button>
+
+                    <button type="submit" class="btn-principal">
+                        Enregistrer
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <section class="filter-card">
+
+            <input
+                id="recherche"
+                type="search"
+                placeholder="Rechercher un utilisateur...">
+
+            <select id="filtreRole">
+
+                <option value="">Tous les rôles</option>
+                <option value="pharmacien">Pharmacien</option>
+                <option value="assistant">Assistant</option>
+                <option value="vendeur">Vendeur</option>
+                <option value="gestionnaire">Gestionnaire</option>
+                <option value="administrateur">Administrateur</option>
+
+            </select>
+
+            <select id="filtreStatut">
+
+                <option value="">Tous les statuts</option>
+                <option value="actif">Actifs</option>
+                <option value="inactif">Inactifs</option>
+
+            </select>
+
+        </section>
+
+
+        <section class="table-card">
+
+            <div class="table-head">
+                <h2>Comptes utilisateurs</h2>
+                <span id="compteur">0 utilisateur</span>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Identifiant</th>
+                            <th>Rôle</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listeUtilisateurs"></tbody>
+
+                </table>
+
+            </div>
+
+            <div id="etatVide" class="vide">
+                Aucun utilisateur trouvé.
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toast">
+    <span id="toastMessage"></span>
+</div>
+
+
+<script src="../database/database.js"></script>
+<script src="utilisateurs.js"></script>
+
+</body>
+</html>

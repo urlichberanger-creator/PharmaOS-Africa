@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PharmaOS Africa</string>
+    <string name="title_activity_main">PharmaOS Africa</string>
+    <string name="package_name">com.pharmaos.africa</string>
+    <string name="custom_url_scheme">com.pharmaos.africa</string>
+</resources>

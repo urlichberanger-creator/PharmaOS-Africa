@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ventes - PharmaOS Africa</title>
+<link rel="stylesheet" href="ventes.css">
+</head>
+
+<body>
+
+<header>
+    <button id="btnMenu" type="button">☰</button>
+    <strong>PharmaOS Africa</strong>
+</header>
+
+<div id="overlay"></div>
+
+<aside id="sidebar">
+    <button id="btnFermerMenu" type="button">×</button>
+    <h2>PharmaOS Africa</h2>
+
+    <a href="../dashboard/dashboard.html">Dashboard</a>
+    <a href="../medicaments/medicaments.html">Médicaments</a>
+    <a href="../stock/stock.html">Stock</a>
+    <a href="../achats/achats.html">Achats</a>
+    <a href="ventes.html">Ventes</a>
+    <a href="../factures/factures.html">Factures</a>
+    <a href="../patients/patients.html">Patients</a>
+    <a href="../historique/historique.html">Historique</a>
+    <a href="../utilisateurs/utilisateurs.html">Utilisateurs</a>
+    <a href="../parametres/parametres.html">Paramètres</a>
+
+    <button id="btnDeconnexion" type="button">
+        Déconnexion
+    </button>
+</aside>
+
+<main>
+
+<section class="titre">
+    <div>
+        <small>Pharmacie</small>
+        <h1>Ventes</h1>
+    </div>
+
+    <button id="btnPanier" type="button">
+        Panier <b id="compteurPanier">0</b>
+    </button>
+</section>
+
+<section class="card">
+
+    <h2>Nouvelle vente</h2>
+
+    <label>Patient</label>
+    <input id="patient" placeholder="Nom du patient">
+
+    <label>Médicament</label>
+
+    <div class="recherche">
+        <input
+            id="medicament"
+            autocomplete="off"
+            placeholder="Rechercher par DCI, commercial ou article...">
+
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <div id="lotsDisponibles" class="lots"></div>
+
+    <input id="medicamentId" type="hidden">
+
+    <div class="grid">
+
+        <div>
+            <label>Lot</label>
+            <input id="lot" readonly>
+        </div>
+
+        <div>
+            <label>Stock restant</label>
+            <input id="stockDisponible" readonly>
+        </div>
+
+        <div>
+            <label>PVU</label>
+            <input id="prixVente" readonly>
+        </div>
+
+        <div>
+            <label>Quantité</label>
+            <input id="quantite" type="number" min="1" value="1">
+        </div>
+
+    </div>
+
+    <button id="btnAjouterPanier" class="principal" type="button">
+        Ajouter au panier
+    </button>
+
+</section>
+
+<section id="resumePanier" class="card panier">
+
+    <h2>Résumé de la vente</h2>
+
+    <div id="listePanier"></div>
+
+    <div class="total">
+        <span>Total</span>
+        <strong id="totalPanier">0 BIF</strong>
+    </div>
+
+    <label>Mode de paiement</label>
+
+    <select id="modePaiement">
+        <option>Espèces</option>
+        <option>Mobile Money</option>
+        <option>Carte</option>
+        <option>Crédit</option>
+    </select>
+
+    <button id="btnValiderVente" class="valider" type="button">
+        Valider la vente
+    </button>
+
+</section>
+
+<section id="facture" class="facture">
+
+    <div class="facture-box">
+
+        <div class="facture-head">
+            <strong>PharmaOS Africa</strong>
+            <button id="btnFermerFacture" type="button">×</button>
+        </div>
+
+        <h2>FACTURE</h2>
+
+        <p id="numeroFacture"></p>
+        <p id="dateFacture"></p>
+        <p id="patientFacture"></p>
+
+        <hr>
+
+        <div id="contenuFacture"></div>
+
+        <div id="totalFacture" class="facture-total"></div>
+
+        <div class="actions">
+
+            <button id="btnImprimer" class="principal" type="button">
+                Imprimer
+            </button>
+
+            <button id="btnFermerFacture2" class="second" type="button">
+                Fermer
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div id="toast">
+    <span id="toastMessage"></span>
+</div>
+
+</main>
+
+<script src="../database/database.js"></script>
+<script src="ventes.js"></script>
+
+</body>
+</html>

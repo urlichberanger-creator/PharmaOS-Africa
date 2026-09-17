@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tableau de bord — PharmaOS Africa</title>
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        id="sidebar"
+        class="sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <div class="brand-mark">
+                +
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    PharmaOS Africa
+                </div>
+
+                <div class="brand-subtitle">
+                    ERP Pharmacie
+                </div>
+            </div>
+
+        </div>
+
+
+        <nav class="main-menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item active"
+            >
+                <span class="menu-icon">⌂</span>
+                <span>Tableau de bord</span>
+            </a>
+
+
+            <a
+                href="../medicaments/medicaments.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">▣</span>
+                <span>Médicaments</span>
+            </a>
+
+
+            <a
+                href="../stock/stock.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">▤</span>
+                <span>Stock</span>
+            </a>
+
+
+            <a
+                href="../achats/achats.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">↓</span>
+                <span>Achats / Réception</span>
+            </a>
+
+
+            <a
+                href="../ventes/ventes.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">↑</span>
+                <span>Ventes</span>
+            </a>
+
+
+            <a
+                href="../patients/patients.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">○</span>
+                <span>Patients</span>
+            </a>
+
+
+            <a
+                href="../historique/historique.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">◷</span>
+                <span>Historique</span>
+            </a>
+
+
+            <a
+                href="../utilisateurs/utilisateurs.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">◎</span>
+                <span>Utilisateurs</span>
+            </a>
+
+
+            <a
+                href="../parametres/parametres.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">⚙</span>
+                <span>Paramètres</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <button
+                id="btnDeconnexion"
+                class="logout-button"
+                type="button"
+            >
+                <span>↪</span>
+                <span>Déconnexion</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         OVERLAY MOBILE
+    ====================================================== -->
+
+    <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+    ></div>
+
+
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
+    <div class="app-container">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <button
+                id="btnMenu"
+                class="menu-button"
+                type="button"
+                aria-label="Ouvrir le menu"
+            >
+                ☰
+            </button>
+
+
+            <div class="topbar-title">
+
+                <strong>
+                    Tableau de bord
+                </strong>
+
+            </div>
+
+
+            <button
+                id="btnNotification"
+                class="notification-button"
+                type="button"
+                aria-label="Notifications"
+            >
+                ♢
+
+                <span
+                    id="notificationBadge"
+                    class="notification-badge"
+                >
+                    0
+                </span>
+
+            </button>
+
+        </header>
+
+
+        <!-- MAIN -->
+
+        <main class="main-content">
+
+
+            <!-- EN-TÊTE -->
+
+            <section class="page-header">
+
+                <div>
+
+                    <div class="page-kicker">
+                        TABLEAU DE BORD
+                    </div>
+
+                    <h1>
+                        Bonjour, Pharmacien
+                    </h1>
+
+                    <p id="dateActuelle">
+                        Chargement de la date…
+                    </p>
+
+                </div>
+
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        Système opérationnel
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 KPI
+            ================================================== -->
+
+            <section class="kpi-grid">
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Chiffre d'affaires
+                    </div>
+
+                    <div
+                        id="chiffreAffaires"
+                        class="kpi-value"
+                    >
+                        0 BIF
+                    </div>
+
+                    <div class="kpi-description">
+                        Ventes enregistrées
+                    </div>
+
+                </article>
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Bénéfice
+                    </div>
+
+                    <div
+                        id="benefice"
+                        class="kpi-value positive"
+                    >
+                        0 BIF
+                    </div>
+
+                    <div class="kpi-description">
+                        Marge enregistrée
+                    </div>
+
+                </article>
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Stock disponible
+                    </div>
+
+                    <div
+                        id="stockDisponible"
+                        class="kpi-value"
+                    >
+                        0
+                    </div>
+
+                    <div class="kpi-description">
+                        Unités en stock
+                    </div>
+
+                </article>
+
+
+                <article class="kpi-card">
+
+                    <div class="kpi-label">
+                        Médicaments actifs
+                    </div>
+
+                    <div
+                        id="medicamentsActifs"
+                        class="kpi-value"
+                    >
+                        0
+                    </div>
+
+                    <div class="kpi-description">
+                        Références enregistrées
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACTIONS RAPIDES
+            ================================================== -->
+
+            <section class="section-block">
+
+                <div class="section-title">
+
+                    <h2>
+                        Actions rapides
+                    </h2>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <a
+                        href="../ventes/ventes.html"
+                        class="quick-action"
+                    >
+
+                        <span class="quick-icon">
+                            +
+                        </span>
+
+                        <span>
+                            Nouvelle vente
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="../achats/achats.html"
+                        class="quick-action"
+                    >
+
+                        <span class="quick-icon">
+                            +
+                        </span>
+
+                        <span>
+                            Nouvelle réception
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="../medicaments/medicaments.html"
+                        class="quick-action"
+                    >
+
+                        <span class="quick-icon">
+                            +
+                        </span>
+
+                        <span>
+                            Ajouter médicament
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DEUX COLONNES
+            ================================================== -->
+
+            <section class="dashboard-columns">
+
+
+                <!-- ALERTES -->
+
+                <article class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Attention requise
+                            </h2>
+
+                            <p>
+                                Situations nécessitant une vérification
+                            </p>
+
+                        </div>
+
+                        <span
+                            id="nombreAlertes"
+                            class="panel-count"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="listeAlertes"
+                        class="panel-body"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ✓
+                            </div>
+
+                            <strong>
+                                Aucune alerte
+                            </strong>
+
+                            <span>
+                                Aucun problème détecté.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ACTIVITÉS -->
+
+                <article class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Dernières opérations
+                            </h2>
+
+                            <p>
+                                Activité récente de la pharmacie
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="listeOperations"
+                        class="panel-body"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                —
+                            </div>
+
+                            <strong>
+                                Aucune opération
+                            </strong>
+
+                            <span>
+                                Les opérations apparaîtront ici.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 RÉSUMÉ
+            ================================================== -->
+
+            <section class="summary-grid">
+
+
+                <article class="summary-card">
+
+                    <span class="summary-label">
+                        Patients
+                    </span>
+
+                    <strong
+                        id="nombrePatients"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="summary-card">
+
+                    <span class="summary-label">
+                        Ventes
+                    </span>
+
+                    <strong
+                        id="nombreVentes"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="summary-card">
+
+                    <span class="summary-label">
+                        Achats
+                    </span>
+
+                    <strong
+                        id="nombreAchats"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </article>
+
+
+                <article class="summary-card">
+
+                    <span class="summary-label">
+                        Alertes stock
+                    </span>
+
+                    <strong
+                        id="nombreAlertesResume"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </article>
+
+            </section>
+
+
+        </main>
+
+
+        <!-- FOOTER -->
+
+        <footer class="app-footer">
+
+            <span>
+                PharmaOS Africa
+            </span>
+
+            <span>
+                ERP Pharmacie Professionnel
+            </span>
+
+        </footer>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+    >
+        <span id="toastMessage"></span>
+    </div>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="../database/database.js"></script>
+
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

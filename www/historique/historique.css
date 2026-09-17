@@ -1,0 +1,417 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #263442;
+}
+
+
+/* ================================
+   MENU
+================================ */
+
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e1e6ec;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    height: 65px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e1e6ec;
+}
+
+.sidebar-header strong {
+    color: #0b5ed7;
+}
+
+.sidebar-header button {
+    display: none;
+}
+
+nav a {
+    display: block;
+    padding: 14px 18px;
+    color: #394957;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover,
+nav a.active {
+    background: #edf4ff;
+    color: #0b5ed7;
+}
+
+
+/* ================================
+   APP
+================================ */
+
+.app {
+    margin-left: 250px;
+}
+
+.topbar {
+    height: 65px;
+    background: #ffffff;
+    border-bottom: 1px solid #e1e6ec;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 22px;
+}
+
+.topbar button {
+    display: none;
+}
+
+.topbar strong {
+    display: block;
+    font-size: 17px;
+}
+
+.topbar small {
+    color: #7a8794;
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+main {
+    padding: 22px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    margin: 0 0 5px;
+    font-size: 25px;
+}
+
+.page-header p {
+    margin: 0;
+    color: #71808e;
+    font-size: 14px;
+}
+
+.btn-secondaire,
+#btnReset {
+    border: 1px solid #d5dce4;
+    background: #ffffff;
+    color: #334454;
+    border-radius: 7px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.btn-secondaire:hover,
+#btnReset:hover {
+    background: #f0f3f7;
+}
+
+
+/* ================================
+   STATS
+================================ */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e1e6ec;
+    border-radius: 9px;
+    padding: 17px;
+}
+
+.stat-card span {
+    display: block;
+    color: #71808e;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.stat-card strong {
+    font-size: 22px;
+}
+
+
+/* ================================
+   FILTRES
+================================ */
+
+.filtres {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.filtres input,
+.filtres select {
+    height: 42px;
+    border: 1px solid #d5dce4;
+    border-radius: 7px;
+    background: #ffffff;
+    padding: 0 12px;
+    color: #263442;
+    font-size: 14px;
+}
+
+.filtres input {
+    flex: 1;
+    min-width: 220px;
+}
+
+.filtres select {
+    min-width: 180px;
+}
+
+
+/* ================================
+   TABLE
+================================ */
+
+.table-card {
+    background: #ffffff;
+    border: 1px solid #e1e6ec;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.table-head {
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e7ebef;
+}
+
+.table-head h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.table-head span {
+    color: #7a8794;
+    font-size: 13px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+th,
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #edf0f3;
+    text-align: left;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+th {
+    background: #f8fafc;
+    color: #566574;
+    font-weight: 600;
+}
+
+tr:hover td {
+    background: #fafcff;
+}
+
+.type-entree {
+    color: #18864b;
+    font-weight: 600;
+}
+
+.type-sortie {
+    color: #c0392b;
+    font-weight: 600;
+}
+
+.medicament-cell strong {
+    display: block;
+}
+
+.medicament-cell small {
+    color: #687684;
+}
+
+
+/* ================================
+   VIDE
+================================ */
+
+.vide {
+    display: none;
+    padding: 35px;
+    text-align: center;
+    color: #7a8794;
+}
+
+
+/* ================================
+   TOAST
+================================ */
+
+#toast {
+    position: fixed;
+    left: 50%;
+    bottom: 25px;
+    transform: translateX(-50%) translateY(20px);
+    background: #263442;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 7px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s;
+    z-index: 3000;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+#overlay {
+    display: none;
+}
+
+@media (max-width: 800px) {
+
+    #sidebar {
+        transform: translateX(-100%);
+        transition: 0.25s;
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-header button {
+        display: block;
+        border: 0;
+        background: transparent;
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    #overlay.show {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 900;
+    }
+
+    .app {
+        margin-left: 0;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .topbar button {
+        display: block;
+        border: 0;
+        background: transparent;
+        font-size: 23px;
+        cursor: pointer;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+    }
+
+    .page-header h1 {
+        font-size: 21px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filtres {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filtres input {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .filtres select,
+    .filtres button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .page-header {
+        flex-direction: column;
+    }
+
+    .btn-secondaire {
+        width: 100%;
+    }
+
+    .filtres {
+        grid-template-columns: 1fr;
+    }
+
+    .filtres input {
+        grid-column: auto;
+    }
+
+}

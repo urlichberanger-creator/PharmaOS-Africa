@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres - PharmaOS Africa</title>
+    <link rel="stylesheet" href="parametres.css">
+</head>
+
+<body>
+
+<div id="overlay"></div>
+
+<aside id="sidebar">
+
+    <div class="sidebar-header">
+        <strong>PharmaOS Africa</strong>
+        <button id="btnFermerMenu" type="button">×</button>
+    </div>
+
+    <nav>
+        <a href="../dashboard/dashboard.html">Dashboard</a>
+        <a href="../medicaments/medicaments.html">Médicaments</a>
+        <a href="../stock/stock.html">Stock</a>
+        <a href="../achats/achats.html">Achats / Réception</a>
+        <a href="../ventes/ventes.html">Ventes</a>
+        <a href="../patients/patients.html">Patients</a>
+        <a href="../historique/historique.html">Historique Stock</a>
+        <a href="../utilisateurs/utilisateurs.html">Utilisateurs</a>
+        <a href="parametres.html" class="active">Paramètres</a>
+        <a href="#" id="btnDeconnexion">Déconnexion</a>
+    </nav>
+
+</aside>
+
+
+<div class="app">
+
+    <header class="topbar">
+
+        <button id="btnMenu" type="button">☰</button>
+
+        <div>
+            <strong>Paramètres</strong>
+            <small>Configuration de PharmaOS Africa</small>
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="page-header">
+
+            <div>
+                <h1>Paramètres</h1>
+                <p>Configurez les paramètres généraux de votre ERP.</p>
+            </div>
+
+        </section>
+
+
+        <form id="formParametres">
+
+
+            <!-- PHARMACIE -->
+
+            <section class="card">
+
+                <div class="card-title">
+                    <h2>Informations de la pharmacie</h2>
+                    <p>Informations utilisées dans l'application et les documents.</p>
+                </div>
+
+                <div class="grid">
+
+                    <label>
+                        Nom de la pharmacie
+                        <input
+                            id="nomPharmacie"
+                            type="text"
+                            placeholder="Ex. Pharmacie Centrale">
+                    </label>
+
+                    <label>
+                        Téléphone
+                        <input
+                            id="telephone"
+                            type="tel"
+                            placeholder="+257 ...">
+                    </label>
+
+                    <label>
+                        Adresse
+                        <input
+                            id="adresse"
+                            type="text"
+                            placeholder="Adresse de la pharmacie">
+                    </label>
+
+                    <label>
+                        Ville
+                        <input
+                            id="ville"
+                            type="text"
+                            placeholder="Bujumbura">
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- MONNAIE -->
+
+            <section class="card">
+
+                <div class="card-title">
+                    <h2>Monnaie et ventes</h2>
+                    <p>Configuration utilisée pour les montants.</p>
+                </div>
+
+                <div class="grid">
+
+                    <label>
+                        Devise
+                        <select id="devise">
+
+                            <option value="BIF">
+                                BIF — Franc burundais
+                            </option>
+
+                            <option value="USD">
+                                USD — Dollar américain
+                            </option>
+
+                        </select>
+                    </label>
+
+                    <label>
+                        Décimales
+                        <select id="decimales">
+
+                            <option value="0">0</option>
+                            <option value="2">2</option>
+
+                        </select>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- STOCK -->
+
+            <section class="card">
+
+                <div class="card-title">
+                    <h2>Gestion du stock</h2>
+                    <p>Valeurs utilisées par défaut lors des réceptions.</p>
+                </div>
+
+                <div class="grid">
+
+                    <label>
+                        Stock minimum par défaut
+                        <input
+                            id="stockMinimum"
+                            type="number"
+                            min="0"
+                            value="10">
+                    </label>
+
+                    <label>
+                        Alerte expiration
+                        <select id="alerteExpiration">
+
+                            <option value="30">
+                                30 jours
+                            </option>
+
+                            <option value="60">
+                                60 jours
+                            </option>
+
+                            <option value="90">
+                                90 jours
+                            </option>
+
+                            <option value="180">
+                                180 jours
+                            </option>
+
+                        </select>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- FACTURE -->
+
+            <section class="card">
+
+                <div class="card-title">
+                    <h2>Facturation</h2>
+                    <p>Préférences pour les factures de vente.</p>
+                </div>
+
+                <div class="grid">
+
+                    <label>
+                        Préfixe facture
+                        <input
+                            id="prefixeFacture"
+                            type="text"
+                            maxlength="10"
+                            value="FACT">
+                    </label>
+
+                    <label>
+                        Afficher PharmaOS Africa
+                        <select id="afficherPharmaOS">
+
+                            <option value="oui">
+                                Oui
+                            </option>
+
+                            <option value="non">
+                                Non
+                            </option>
+
+                        </select>
+                    </label>
+
+                    <label>
+                        Afficher téléphone
+                        <select id="afficherTelephone">
+
+                            <option value="oui">
+                                Oui
+                            </option>
+
+                            <option value="non">
+                                Non
+                            </option>
+
+                        </select>
+                    </label>
+
+                    <label>
+                        Format facture
+                        <select id="formatFacture">
+
+                            <option value="A4">
+                                A4
+                            </option>
+
+                            <option value="ticket">
+                                Ticket
+                            </option>
+
+                        </select>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- BOUTON -->
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    class="btn-principal">
+                    Enregistrer les paramètres
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</div>
+
+
+<div id="toast">
+    <span id="toastMessage"></span>
+</div>
+
+
+<script src="../database/database.js"></script>
+<script src="parametres.js"></script>
+
+</body>
+</html>

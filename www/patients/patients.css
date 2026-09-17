@@ -1,0 +1,771 @@
+/* =========================================================
+   PharmaOS Africa
+   PATIENTS.CSS
+   Interface ERP pharmacie — mobile first
+========================================================= */
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: 16px;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ
+========================================================= */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   MENU LATÉRAL
+========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    left: -280px;
+
+    width: 270px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    border-right: 1px solid #dbe3ee;
+
+    z-index: 1000;
+
+    transition:
+        left 0.25s ease;
+
+    overflow-y: auto;
+}
+
+
+.sidebar.open {
+    left: 0;
+}
+
+
+.sidebar-header {
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #e5eaf1;
+
+    color: #0b5ed7;
+}
+
+
+.sidebar-header strong {
+    font-size: 17px;
+}
+
+
+.btn-close-menu {
+    border: 0;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+.menu {
+    padding: 12px;
+}
+
+
+.menu a,
+.menu-logout {
+    display: block;
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    margin-bottom: 4px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #334155;
+
+    text-decoration: none;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.menu a:hover,
+.menu a.active {
+    background: #eaf2ff;
+
+    color: #0b5ed7;
+
+    font-weight: 600;
+}
+
+
+.menu-logout {
+    margin-top: 12px;
+
+    color: #dc3545;
+
+    border-top: 1px solid #e5eaf1;
+
+    border-radius: 0;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.35);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    z-index: 900;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.overlay.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================================
+   CONTENU PRINCIPAL
+========================================================= */
+
+.main {
+    min-height: 100vh;
+
+    padding: 14px;
+}
+
+
+/* =========================================================
+   BARRE SUPÉRIEURE
+========================================================= */
+
+.topbar {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+
+.btn-menu {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    border: 1px solid #dbe3ee;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+.page-title {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.page-title h1 {
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #172033;
+}
+
+
+.page-title p {
+    margin: 3px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   BOUTONS
+========================================================= */
+
+.btn-primary,
+.btn-secondary {
+    min-height: 42px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.btn-primary {
+    border: 1px solid #0b5ed7;
+
+    background: #0b5ed7;
+
+    color: #ffffff;
+}
+
+
+.btn-primary:hover {
+    background: #094db1;
+}
+
+
+.btn-secondary {
+    border: 1px solid #cbd5e1;
+
+    background: #ffffff;
+
+    color: #475569;
+}
+
+
+/* =========================================================
+   RECHERCHE
+========================================================= */
+
+.search-section {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+#recherchePatient {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+#recherchePatient:focus {
+    border-color: #0b5ed7;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 94, 215, 0.10);
+}
+
+
+.counter {
+    flex: 0 0 auto;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CARTE FORMULAIRE
+========================================================= */
+
+.form-card,
+.table-card {
+    background: #ffffff;
+
+    border: 1px solid #e1e8f0;
+
+    border-radius: 10px;
+
+    margin-bottom: 14px;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+
+.form-card {
+    display: none;
+
+    padding: 15px;
+}
+
+
+.form-card.show {
+    display: block;
+}
+
+
+.form-header,
+.table-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.form-header {
+    padding-bottom: 13px;
+
+    margin-bottom: 14px;
+
+    border-bottom: 1px solid #e8edf3;
+}
+
+
+.form-header h2,
+.table-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+
+    color: #172033;
+}
+
+
+.form-header p,
+.table-header p {
+    margin: 4px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.btn-close {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #dbe3ee;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #64748b;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FORMULAIRE
+========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+}
+
+
+.field {
+    margin-bottom: 12px;
+}
+
+
+.field label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.field input,
+.field select {
+    height: 43px;
+
+    padding: 0 11px;
+}
+
+
+.field textarea {
+    min-height: 70px;
+
+    padding: 10px 11px;
+
+    resize: vertical;
+}
+
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #0b5ed7;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 94, 215, 0.10);
+}
+
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 5px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #e8edf3;
+}
+
+
+/* =========================================================
+   TABLEAU
+========================================================= */
+
+.table-header {
+    padding: 15px;
+
+    border-bottom: 1px solid #e8edf3;
+}
+
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+
+    min-width: 720px;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+
+thead {
+    background: #f7f9fc;
+}
+
+
+th {
+    padding: 11px 12px;
+
+    border-bottom: 1px solid #dfe6ee;
+
+    color: #475569;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+td {
+    padding: 12px;
+
+    border-bottom: 1px solid #edf1f5;
+
+    color: #334155;
+
+    white-space: nowrap;
+}
+
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   ÉTAT VIDE
+========================================================= */
+
+.empty-state {
+    display: none;
+
+    padding: 35px 15px;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+
+.empty-state.show {
+    display: block;
+}
+
+
+.empty-state strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #475569;
+
+    font-size: 15px;
+}
+
+
+.empty-state span {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 20px;
+
+    transform:
+        translate(-50%, 20px);
+
+    min-width: 220px;
+
+    max-width: calc(100% - 30px);
+
+    padding: 12px 16px;
+
+    border-radius: 8px;
+
+    background: #172033;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    z-index: 2000;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.toast.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* =========================================================
+   TABLET / GRAND ÉCRAN
+========================================================= */
+
+@media (min-width: 700px) {
+
+    .main {
+        padding: 20px;
+    }
+
+
+    .form-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .field:nth-child(5),
+    .field:nth-child(6) {
+        grid-column: span 1;
+    }
+
+}
+
+
+@media (min-width: 1000px) {
+
+    .main {
+        margin-left: 270px;
+
+        padding: 24px;
+
+        max-width: 1400px;
+    }
+
+
+    .sidebar {
+        left: 0;
+    }
+
+
+    .btn-menu,
+    .btn-close-menu,
+    .overlay {
+        display: none;
+    }
+
+
+    .form-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
